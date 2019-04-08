@@ -36,7 +36,8 @@ namespace multibot
 
             if (activity.Type == ActivityTypes.Message)
             {
-                if (!string.IsNullOrEmpty(activity.Text)) {
+                if (!string.IsNullOrEmpty(activity.Text))
+                {
 
                     //detect language of input text
                     var userLanguage = TranslationHandler.DetectLanguage(activity);
@@ -78,7 +79,9 @@ namespace multibot
                     //await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
                     await Conversation.SendAsync(activity, MakeRoot);
                 }
-                   
+                else {
+                    await Conversation.SendAsync(activity, MakeRoot);
+                }
             }
             else
             {
@@ -87,7 +90,6 @@ namespace multibot
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
-
         internal static IDialog<object> MakeRoot()
         {
             try
@@ -98,9 +100,7 @@ namespace multibot
             {
                 throw ex;
             }
-
         }
-
         private async Task<Activity> HandleSystemMessageAsync(Activity message)
         {
             if (message.Type == ActivityTypes.DeleteUserData)

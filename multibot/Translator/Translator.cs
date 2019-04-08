@@ -1,9 +1,7 @@
 ﻿using multibot.Model;
 using multibot.Utilities;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -74,7 +72,6 @@ namespace multibot.Translator
             }
 
         }
-
         internal async Task<string> GetBearerTokenForTranslator()
         {
             var azureSubscriptionKey = Settings.GetSubscriptionKey();
@@ -82,9 +79,6 @@ namespace multibot.Translator
             var token = await azureAuthToken.GetAccessTokenAsync();
             GlobalVars.Bearer = token;
             return GlobalVars.Bearer;
-
-
-
         }
     }
 }
